@@ -1,0 +1,329 @@
+%
+\chapter{Rings \& Ideals}
+
+\newpage
+
+\section{Definitions,notation and basic properties}
+We shall fix $A$ a commutative ring with an identity $1.$
+
+\begin{eg}
+$A=\{0\}$ is a zero ring. A ring is a zero ring iff $1=0.$
+\end{eg}
+
+Ring homomorphism:$f:A\rightarrow B$ satisfying
+\enum
+\item[(1)]$f(x+y)=f(x)+f(y)$
+\item[(2)]$f(xy)=f(x)f(y)$
+\item[(3)]$f(1)=1$
+\end{list}
+
+Subring: Let $S\subseteq A$ be a subset of $A,$ if $S$ is closed
+under addition$(+)$ and multiplication$(\times),$ and $1\in S,$ then
+$S$ is called a subring of $A.$
+
+Ideal: Let $I\subseteq A$ be an additive subgroup of $A,$ if
+$IA\subseteq I,$ then $I$ is called an ideal of $A.$
+
+Quotient ring: Let$I\subseteq A$ be an ideal, put $A/I=\{\ x+I\mid
+x\in A\}.$$\forall x\in A, \bar{x}:=x+I,
+\bar{x}+\bar{y}:=\overline{x+y}, \bar{x}\cdot
+\bar{y}:=\overline{xy}.$
+
+\begin{prop}
+Let $f:A\rightarrow B$ be a ring homomorphism. \enum
+\item[(1)]$kerf=f^{-1}(0),$ it is an ideal of $A$;
+\item[(2)]$Imf=f(A),$ it is a subring of $B$;
+\item[(3)]We have the following commutative diagram:
+\[ \begin{CD}
+A  @>f>>   B\\
+@VVV     @VVV\\
+A/kerf @>\cong >> Imf\\
+\end{CD} \]
+\item[(4)]$I\subseteq J$(an ideal of $A$) is in one-to-one
+correspondence to $f(J)$ which is an ideal of $Imf.$
+\end{list}
+\end{prop}
+\begin{proof}
+
+\end{proof}
+Zero-divisor: $\forall x\in A$ such that $\exists y\in
+A\setminus\{0\},xy=0.$
+
+Integral domain: A ring without nonzero zero-divisors.
+
+Nilpotent element: $x\in A$ such that $\exists n\geqslant 1,x^n=0.$
+$x$ is a nilpotent element $\Longrightarrow$ $x$ is a zero-divisor.
+
+Units: $x\in A$ such that $\exists y\in A, xy=1.$ Define
+$$A^{\times}=\{x\in A\mid x\text{ is a unit }\}.$$ It is called the
+unit group of $A.$
+
+Principle ideals: $I=(x)=Ax.$
+\begin{prop}
+Let $A$ be a nonzero ring, then the following are equivalent:
+\enum
+\item[(1)]$A$ is a field,
+\item[(2)]The only ideals of $A$ are $0$ and $A,$
+\item[(3)]Every ring homomorphism from $A$ into a nonzero ring is
+injective.
+\end{list}
+\end{prop}
+\begin{proof}
+
+\end{proof}
+Prime ideal: $\mathfrak{p}$ an ideal of $A$ such that
+$\mathfrak{p}\neq A,$ and if $x,y\in A,xy\in\mathfrak{p},$ then
+$x\in\mathfrak{p}$ or $y\in\mathfrak{p}.$
+
+Maximal ideal: $\mathfrak{M}$ an ideal of $A$ such that
+$\mathfrak{M}\neq A,$ and if $I\supset \mathfrak{M}$ is an ideal,
+then $I=A.$
+\begin{cor}
+If $\mathfrak{M}$ is a maximal ideal, then $\mathfrak{M}$ is prime.
+\end{cor}
+\begin{proof}
+
+\end{proof}
+\begin{thm}
+Every nonzero ring has at least one maximal ideal.
+\end{thm}
+\begin{proof}
+
+\end{proof}
+\begin{cor}
+Let $I$ be an ideal of $A$ such that $I\neq A,$ then there exists a
+maximal ideal $\mathfrak{M}\supseteq I.$
+\end{cor}
+\begin{proof}
+
+\end{proof}
+\begin{cor}
+$A\setminus A^{\times} = \bigcup\limits_{\text{maximal
+ideals}}\mathfrak{M}.$
+\end{cor}
+\begin{proof}
+
+\end{proof}
+Local ring: A ring is called local if it has only one maximal ideal
+$\mathfrak{M}.$
+\begin{prop}
+Let $A$ be a ring, and $\mathfrak{M}\neq A$ an ideal of $A,$ then:
+\enum
+\item[(1)]If $A\setminus\mathfrak{M}\subseteq A^{\times},$ then $A$
+is local, and $\mathfrak{M}$ is its only maximal ideal.
+\item[(2)]If $\mathfrak{M}$ is maximal such that
+$1+\mathfrak{M}\subseteq A^{\times},$ then $A$ is local.
+\end{list}
+\end{prop}
+\begin{proof}
+
+\end{proof}
+
+\newpage
+
+\section{Rings of fractions}
+
+\begin{Def}
+Let $A$ be a ring, and $S\subseteq A,$ we say that $S$ is
+multiplicatively closed if $1\in S$ and $S$ is closed for
+multiplication.
+\end{Def}
+\begin{prop}
+If $g:A\rightarrow B$ is a ring homomorphism satisfying:
+\enum
+\item[(1)]$f(S)\subseteq B^{\times},$
+\item[(2)]$g(a)=0\Longleftrightarrow \exists s\in S$ such that
+$as=0,$
+\item[(3)]$B=\{g(a)(g(s))^{-1}\mid a\in A,s\in S\}.$
+\end{list}
+Then there exists a unique isomorphism $h:S^{-1}A\rightarrow B$ such
+that $g=h\circ i_S,$ where
+\[ \xymatrix@R=0em{
+   {i_S:\ A} \ar[r] & S^{-1}A      \\
+   a \ar@{|->}[r] & \frac{a}{1} }  \]
+\end{prop}
+\begin{proof}
+
+\end{proof}
+\begin{egs}\
+\enum
+\item[(1)]Let $\mathfrak{p}$ be a prime ideal of $A,$ set
+$S=A\setminus \mathfrak{p}.$ Then $S$ is multiplicatively closed. We
+define $S^{-1}A$ by $A_{\mathfrak{p}},$ called the localization of
+$A$ at $\mathfrak{p}.$ Then $A_{\mathfrak{p}}$ is local with
+$S^{-1}\mathfrak{p}$ its only maximal ideal.
+\item[(2)]$S^{-1}A=0$ iff $0\in S.$
+\item[(3)]Let $f\in A,$ and $S=\{f^n\mid n\geqslant 0\}.$ Then $S$ is
+multiplicatively closed, and we denote $S^{-1}A$ by $A_f.$
+\item[(4)]Put $A=k[t_1,\cdots,t_n]$ with $k$ an infinite field.
+Let $\mathfrak{p}$ be a prime ideal of $A.$ Put
+$$V = \{x=(x_1,\cdots,x_n)\in k^n\mid f(x)=0, \forall f\in
+\mathfrak{p} \},$$
+$$A_{\mathfrak{p}} = \{\frac{f}{g}\mid f\in A, g\not\in
+\mathfrak{p} \}.$$ $A_{\mathfrak{p}}$ is the ring of rational
+functions on $k^n$ which are defined at almost all points of $V.$
+\end{list}
+\end{egs}
+
+\newpage
+
+\section{Nilradical and Jacobson radical}
+
+\begin{prop}
+Let $A$ be a ring, set $N = \{x\in A\mid x \text{ is nilpotent} \}.$
+Then $N$ is an ideal of $A$ and $A/N$ has no nonzero nilpotent
+elements. More precisely, $N = \bigcap\limits_{prime}\mathfrak{p}.$
+\end{prop}
+\begin{proof}
+$\mathit{1^{\circ}}$ $N\subseteq \bigcap\limits_{prime}\mathfrak{p}$
+is obvious because $0\in \mathfrak{p}.$
+
+$\mathit{2^{\circ}}$ $N\supseteq
+\bigcap\limits_{prime}\mathfrak{p}:$
+
+By contradiction, suppose that $\exists f\in
+(\bigcap\limits_{prime}\mathfrak{p})\setminus N,$ then $\forall
+n\geqslant 1,$ we have $f^n\neq 0.$ So $A_f\neq 0,$ and $A_f$ has at
+least one maximal ideal $\bar{\mathfrak{M}}.$ Then $\mathfrak{M}:=
+\{x\in A\mid \frac{x}{1}\in \bar{\mathfrak{M}}\}$ is a prime ideal
+in $A.$ Note that we have $f\not\in \mathfrak{M},$ otherwise,
+$\frac{f}{1}\in \bar{\mathfrak{M}}$ while $\frac{f}{1}$ is a unit in
+$A_f.$ However, $f\in \bigcap\limits_{prime}\mathfrak{p},$ absurd.
+\end{proof}
+The radical of an ideal $I$:
+$$\sqrt{I}:=\{x\in A\mid \exists n\geqslant 1\text{ such that }x^n\in I\}.$$
+$\sqrt{I}$ is an ideal of $A,$ and we have
+$I\subseteq\sqrt{I}\subseteq A.$
+\begin{prop}\
+\enum
+\item[(1)]$\mathfrak{p}$ is a prime ideal $\Longrightarrow$
+$\mathfrak{p}=\sqrt{\mathfrak{p}}.$
+\item[(2)]$\exists k\geqslant 1$ such that $N^k\subseteq H$
+$\Longrightarrow$ $\sqrt{N}\subseteq \sqrt{H}.$
+\item[(3)]$\sqrt{NH}=\sqrt{N\cap H}=\sqrt{N}\cap \sqrt{H}.$ In
+particular, $\forall N,$ and $k\geqslant 1,$ $\sqrt{N^k}=\sqrt{N}.$
+\item[(4)]$\sqrt{\sqrt{N}}=\sqrt{N}.$
+\item[(5)]$\sqrt{N+H}=\sqrt{\sqrt{N}+\sqrt{H}}.$
+\end{list}
+\end{prop}
+\begin{proof}
+
+\end{proof}
+Jacobson radical:
+$$\mathfrak{R}:=\bigcap\limits_{\text{maximal ideals}}\mathfrak{M}=
+\{x\in A\mid\forall y\in A,1+xy\in A^{\times}\}.$$
+
+\newpage
+
+\section{Operations on ideals}
+
+Addition:
+$$I+J=\{x+y\mid x\in I,y\in J\},$$
+$$\sum\limits_iI_i=\{\sum\limits_ix_i\mid x_i\in I_i,x_i=0 \text{ for almost all }i\}.$$
+
+Intersection:
+$$I\cap J=\{x\in A\mid x\in I, x\in J\},$$
+$$\sum\limits_i I_i = \bigcap\limits_{\forall i, I\supset I_i} I.$$
+Let $E$ be a subset of $A,$ $<E>:= \bigcap\limits_{I\supset E} I =
+\{\sum\limits_{i<\infty} x_iy_i\mid x_i\in E, y_i\in A\}.$
+
+Direct product: $A=\prod\limits_{i=1}^n A_i,$ with $A_i$ rings.
+\begin{Def}
+Let $A$ be a ring, $I,J$ be two ideals of $A.$ We say $I,J$ is
+coprime, if $I+J=A.$
+\end{Def}
+\begin{prop}\
+\enum
+\item[(1)]Let $\mathfrak{p}_1,\cdots,\mathfrak{p}_n$ be prime ideals
+of $A,$ and $I$ be an ideal of $A,$ such that $I\subseteq
+\bigcup\limits_{i=1}^n \mathfrak{p}_i.$ Then $\exists i$ such that
+$I\subseteq \mathfrak{p}_i.$
+\item[(2)]Let $I_1,\cdots,I_n$ be ideals of $A$ and $\mathfrak{p}$ a
+prime ideal. If $\bigcup\limits_{i=1}^n I_i\subseteq \mathfrak{p},$
+then $\exists i$ such that $I_i\subseteq \mathfrak{p}.$ In
+particular, if $\mathfrak{p}=\bigcup\limits_{i=1}^n I_i,$ then
+$\exists i$ such that $\mathfrak{p}=I_i.$
+\end{list}
+\end{prop}
+\begin{proof}
+We shall prove by induction on $n$ that
+$$I\nsubseteq \mathfrak{p}_i(1\leqslant i\leqslant n)\Longrightarrow
+I\nsubseteq \bigcup\limits_{i=1}^n \mathfrak{p}_i.$$
+
+$n=1,$ the case is trivial.
+
+Suppose $n\geqslant 2$ and the result holds for $n-1.$ Then $\forall
+i(1\leqslant i\leqslant n), I\nsubseteq \bigcup\limits_{j\neq i}
+\mathfrak{p}_j,$ so $\exists x_i\in I\setminus \bigcup\limits_{j\neq
+i} \mathfrak{p}_j.$ If $\exists i$ such that $x_i\not\in
+\mathfrak{p}_i,$ then we get the desired result. Otherwise, $x_i\in
+\mathfrak{p}_i, \forall 1\leqslant i\leqslant n,$ and then
+$$y = \sum\limits_{i=1}^n x_1\cdots x_{i-1}\hat{x}_ix_{i+1}\cdots x_n\in
+I.$$ But $\forall j(1\leqslant j\leqslant n), y\not\in
+\mathfrak{p}_j,$ so $y\in I\setminus \bigcup\limits_{j=1}^n
+\mathfrak{p}_j.$
+\end{proof}
+
+\newpage
+
+\section{Extension and contraction}
+
+\begin{Def}
+Let $f: A\rightarrow B$ be a ring homomorphism, $q$ a (prime) ideal
+of $B.$ Then $q^c:=f^{-1}(q)$ is a (prime) ideal of $A.$
+
+Let $I$ be an ideal of $A,$ then
+$$I^e:=<f(I)>=f(I)B=\{\sum\limits_{i<\infty}f(a_i)b_i\mid a_i\in I, b_i\in
+B\}$$ is an ideal of $B.$
+\end{Def}
+\begin{prop}
+Let $I$ be an ideal of $A,$ $J$ be an ideal of $B.$ Then
+\enum
+\item[(1)]$I\subseteq I^{ec}, J\supseteq J^{ce}.$
+\item[(2)]$J^c=J^{cec}, I^e=I^{ece}.$
+\item[(3)]Put $C=\{J^c\mid J \text{ an ideal of } B\}, E=\{I^e\mid I \text{ an ideal of }
+A\}.$ Then $C=\{I\mid I^{ec}=I\}, E=\{J\mid J^{ce}=J\}.$
+\end{list}
+\end{prop}
+\begin{proof}
+
+\end{proof}
+\begin{prop}
+Let $A$ be a ring, $S$ a multiplicatively closed set of $A.$ Let
+$i_S: A\rightarrow S^{-1}A$ be the canonical ring homomorphism, and
+put $B=S^{-1}A.$
+\enum
+\item[(1)]Every ideal in $S^{-1}A$ is an extension ideal. i.e. if
+$J$ is an ideal of $S^{-1}A,$ then $J=s^{-1}(i_S^{-1}(J)).$
+\item[(2)]If $I$ is an ideal in $A,$ then $I^{ec} =
+\bigcup\limits_{s\in S}(I:S).$ Then, $I^{e}=(1)$ iff $I\cap
+S=\emptyset.$
+\item[(3)]$I$ is a contracted ideal $\Longleftrightarrow$ no element
+of $S$ is a zero-divisor in $A/I.$
+\item[(4)]There is a one-to-one correspondence:
+\[ \xymatrix@R=0em{
+   \mathfrak{p} \ar@{<->}[r]^{1-1} & S^{-1}\mathfrak{p}  \\
+   {\mathfrak{p}\ prime, \mathfrak{p}\cap S=\emptyset} & \text{prime ideals in
+   } S^{-1}A }  \]
+\item[(5)]The operation $S^{-1}$ commute with the formation of
+finite sums, products, intersections, and radicals.
+\end{list}
+\end{prop}
+\begin{proof}
+
+\end{proof}
+\begin{remark}
+$(I:s):=\{x\in A\mid sx\in I\}.$ $(I:J):={x\in A\mid xJ\subseteq
+I},$ called the ideal quotient.
+\end{remark}
+\begin{cor}\
+\enum
+\item[(1)]$S^{-1}(\sqrt{A})=\sqrt{S^{-1}A}.$
+\item[(2)]Let $\mathfrak{p}$ be a prime ideal of $A,$ then the prime
+ideals of $A_{\mathfrak{p}}$ are in one-to-one correspondence with
+the prime ideals contained in $\mathfrak{p}.$
+\end{list}
+\end{cor}
+\begin{proof}
+
+\end{proof}

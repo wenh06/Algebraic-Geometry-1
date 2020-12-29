@@ -1,0 +1,1068 @@
+%
+\chapter{Abelian Category}
+
+\newpage
+
+\section{Classes and sets(G\"odel-Bernays-Von Neumann)}
+
+A class is a set iff it is a member of another class. It is
+equivalent to saying that the only members of a class are sets.
+\begin{egs}Let $S$ be the class of all sets.
+\enum
+\item[(1)]$S$ is a class, but not a set. Indeed, set
+$$A=\{X\in S\mid X\not\in X\}.$$
+Assume that $S$ is a set, then $A\in S.$ $\forall X\in S,$ we have
+$X\in A\Longleftrightarrow X\not\in X.$ In particular, $A\in
+A\Longleftrightarrow A\not\in A,$ absurd.
+\item[(2)]Let $\mathscr{P}(S)$ be the collection of all subsets of
+$S,$ then $\mathscr{P}(S)=S.$ Indeed, $\mathscr{P}(S)\subseteq S$ is
+direct by definition. The only members of a class are set, so we
+obtain $\mathscr{P}(S)\supseteq S.$
+\end{list}
+\end{egs}
+
+\newpage
+
+\section{Basic notions about category}
+
+\begin{Def}
+A category $\mathscr{C}$ consists of the following data:
+\enum
+\item[(1)]A class of objects, noted $Obj\mathscr{C}.$
+\item[(2)]$\forall M,N\in Obj\mathscr{C},$ there exists a set
+$Hom_{\mathscr{C}}(M,N)$ of which every element is called a morphism
+from $M$ to $N.$
+\item[(3)]$\forall M,N,P\in Obj\mathscr{C},$ there exists a mapping
+\[ \xymatrix@R=0em{
+   {\mu:Hom_{\mathscr{C}}(M,N)\times Hom_{\mathscr{C}}(N,P)} \ar[r]
+   & {Hom_{\mathscr{C}}(M,P)}                                    \\
+   (f,g) \ar@{|->}[r] & {\mu(f,g)=:g\circ f} }  \]
+called composition satisfying
+
+$(a)$ Composition is associative: $\forall f\in
+Hom_{\mathscr{C}}(M,N),g\in Hom_{\mathscr{C}}(N,P),h\in
+Hom_{\mathscr{C}}(P,Q),$ we have
+$$h\circ(g\circ f)=(h\circ g)\circ f.$$
+
+$(b)$ $\forall M\in Obj\mathscr{C},\exists id_m\in
+Hom_{\mathscr{C}}(M,M),$ called identity element, such that $\forall
+N\in Obj\mathscr{C},\forall f\in Hom_{\mathscr{C}}(M,N),\forall g\in
+Hom_{\mathscr{C}}(N,M),$ we have
+$$f\circ id_M=f,\quad id_m\circ g=g.$$
+\end{list}
+\end{Def}
+\begin{remarks}\
+\enum
+\item[(1)]A morphism $f\in Hom_{\mathscr{C}}(M,N)$ is often denoted
+$f:M\rightarrow N$ or $M\stackrel{f}{\rightarrow}N.$
+\item[(2)]$id_M$ is unique for we have
+$$id_M=id_M\circ\widetilde{id}_M=\widetilde{id}_M.$$
+And we often identify $M$ and $id_M.$
+\item[(3)]$f\in Hom_{\mathscr{C}}(M,N)$ is called an isomorphism if
+$\exists g\in Hom_{\mathscr{C}}(N,M)$ such that $g\circ f=id_M,$ and
+$f\circ g=id_N.$
+\end{list}
+\end{remarks}
+\begin{egs}\
+\enum
+\item[(1)]Trivial category: $Obj\mathscr{C}=\emptyset,
+Hom=\emptyset.$
+\item[(2)]$SET:$ $ObjSET=\text{the class of all sets,}$
+$$Hom_{SET}(A,B)=\{f:A\rightarrow B\mid f\text{ is a mapping }\}.$$
+\item[(3)]Group: $ObjGr=\text{the class of all groups,}$
+$$Hom_{Gr}(A,B)=\{f:A\rightarrow B\mid f\text{ is a group homomorphism }\}.$$
+\item[(4)]Topological spaces: $ObjTOP=\text{the class of all topological
+spaces},$
+$$Hom_{TOP}(A,B)=\mathscr{C}(A;B)=\{f:A\rightarrow B\mid f\text{ is continuous }\}.$$
+\item[(5)]Abelian groups: $ObjAb=\text{the class of all Abelian
+groups},$
+$$Hom_{Ab}(A,B)=\{f:A\rightarrow B\mid f\text{ is a group homomorphism }\}.$$
+\item[(6)]$A$-modules: Let $A$ be a ring, $ObjMod(A)=\text{the class of}$
+$A$-modules,
+$$Hom_{Mod(A)}(M,N)=\{f:M\rightarrow N\mid f\text{ is an $A$-module homomorphism }\}.$$
+\item[(7)]Opposite category $\mathscr{C}^{op}:$ Given a category
+$\mathscr{C}$, define $Obj\mathscr{C}^{op}=Obj\mathscr{C},
+Hom_{\mathscr{C}^{op}}(A,B)=Hom_{\mathscr{C}}(B,A),$ the composite
+denoted by $\ast$ in $\mathscr{C}^{op}$ is defined by $f\ast
+g=g\circ f.$
+\item[(8)]Let $X$ be a topological space, define a category $\mathscr{C}$ as
+follows:
+$$Obj\mathscr{C}=\text{the set of all nonempty open subset of }X,$$
+$\forall U,V\in Obj\mathscr{C},$
+\[
+  Hom_{\mathscr{C}}(U,V)=\left\{
+  \begin{array}{ll}
+  \emptyset, & \text{if } U\nsubseteq V \\
+  \{U\hookrightarrow V\}, & \text{if } U\subseteq V
+  \end{array}
+  \right.
+\]
+\item[(9)]Let $(I,\leqslant)$ be a partially ordered set, we call it
+directed if $\forall i,j\in I, \exists k$ such that $i\leqslant k,
+j\leqslant k.$ We suppose $(I,\leqslant)$ is directed in the
+following. Define a category $CatI$ as follows:
+$$ObjCatI=I,$$
+$\forall i,j\in I,$
+\[
+  Hom(i,j)=\left\{
+  \begin{array}{ll}
+  \emptyset, & \text{if } i\nleqslant j \\
+  \{i\hookrightarrow j\}, & \text{if } i\leqslant j
+  \end{array}
+  \right.
+\]
+\end{list}
+\end{egs}
+\begin{Def}
+Let $\mathscr{C}$ and $\mathscr{D}$ be two categories. A (covariant)
+functor $F:\mathscr{C}\rightarrow \mathscr{D}$ is a function from
+$Obj\mathscr{C}$ to $Obj\mathscr{D}$ (also called $F$), as well as
+functions (also called $F$) from $Hom_{\mathscr{C}}(A,B)$ to
+$Hom_{\mathscr{D}}(F(A),F(B))$ that satisfy:
+\enum
+\item[(1)]$F(id_A)=id_{F(A)}.$
+\item[(2)]$\forall \varphi\in Hom_{\mathscr{C}}(A,B), \forall
+\psi\in Hom_{\mathscr{C}}(B,C), F(\psi\circ\varphi)=F(\psi)\circ
+F(\varphi).$
+\end{list}
+A contravariant functor $F$ from $\mathscr{C}$ to $\mathscr{D}$ is
+by definition a covariant functor from $\mathscr{C}^{op}$ to
+$\mathscr{D}.$ A functor is defined as a covariant functor or a
+contravariant functor. But often when we say that $F$ is a functor,
+we mean implicitly that $F$ is a covariant functor.
+\end{Def}
+\begin{eg}
+Let $\mathscr{C},\mathscr{D}$ be two categories such that:
+\enum
+\item[(1)]$Obj\mathscr{C}\subseteq Obj\mathscr{D},$
+\item[(2)]$\forall A,B\in Obj\mathscr{C},
+Hom_{\mathscr{C}}(A,B)\subseteq Hom_{\mathscr{D}}(A,B).$
+\end{list}
+In this case, we say that $\mathscr{C}$ is a subcategory of
+$\mathscr{D}.$ If further, $\forall A,B\in Obj\mathscr{C},$ we have
+$Hom_{\mathscr{C}}(A,B)=Hom_{\mathscr{D}}(A,B),$ then we say that
+$\mathscr{C}$ is a full subcategory of $\mathscr{D}.$
+
+For example, $Ab$ is a full subcategory of $Gr,$ which is a
+subcategory of $SET$ but not full.
+\end{eg}
+\begin{egs}\
+\enum
+\item[(1)]Let $\mathscr{C}$ be a subcategory of $\mathscr{D},$
+\[ \xymatrix@R=0em{
+   F: & Obj\mathscr{C} \ar[r] & Obj\mathscr{D}  \\
+   & A \ar@{|->}[r] & A                         \\
+   & Hom_{\mathscr{C}}(A,B) \ar[r] & Hom_{\mathscr{D}}(A,B) \\
+   & \varphi \ar@{|->}[r] & \varphi }  \]
+Then $F$ is a covariant functor.
+\item[(2)]Let $\mathscr{C}$ be a category, the identity functor
+$id_{\mathscr{C}}:$
+\[ \xymatrix@R=0em{
+   id_{\mathscr{C}}: & Obj\mathscr{C} \ar[r] & Obj\mathscr{C} \\
+   & M \ar@{|->}[r] & M            \\
+   & Hom(M,N) \ar[r] & Hom(M,N)    \\
+   & f \ar@{|->}[r] & f }  \]
+\item[(3)]Forgetful functor $U:$
+\[ \xymatrix@R=0em{
+   U: & Gr \ar[r] & SET            \\
+   & M \ar@{|->}[r] & M            \\
+   & Hom_{Gr}(M,N) \ar[r] & Hom_{SET}(M,N)    \\
+   & f \ar@{|->}[r] & f }  \]
+\item[(4)]Let $\mathscr{C}$ be a category and $X\in Obj\mathscr{C},$
+functor $Hom_{\mathscr{C}}(X,-)$ is a covariant functor from
+$\mathscr{C}$ to $SET:$
+\[ \xymatrix@R=0em{
+   Hom_{\mathscr{C}}(X,-): & Obj\mathscr{C} \ar[r] & ObjSET  \\
+   & M \ar@{|->}[r] & Hom_{\mathscr{C}}(X,M)                 \\
+   & Hom_{Gr}(M,N) \ar[r] & Hom_{SET}(Hom_{\mathscr{C}}(X,M),Hom_{\mathscr{C}}(X,N)) \\
+   & g \ar@{|->}[r] & Hom_{\mathscr{C}}(X,g) }  \]
+$Hom_{\mathscr{C}}(X,g): Hom_{\mathscr{C}}(X,M)\rightarrow
+Hom_{\mathscr{C}}(X,N),$ which is defined by $f\mapsto g\circ f,$ is
+a mapping from $Hom_{\mathscr{C}}(X,M)$ to $Hom_{\mathscr{C}}(X,N).$
+Then $Hom_{\mathscr{C}}(X,-)$ is a covariant functor.
+
+$Hom_{\mathscr{C}}(-,X)$ is a contravariant functor from
+$\mathscr{C}$ to $SET:$ $\forall M\in Obj\mathscr{C},
+Hom_{\mathscr{C}}(-,X)(M)=Hom_{\mathscr{C}}(M,X); \forall f\in
+Hom_{\mathscr{C}}(M,N),
+Hom_{\mathscr{C}}(-,X)(f)=Hom_{\mathscr{C}}(f,X):
+Hom_{\mathscr{C}}(N,X)\rightarrow Hom_{\mathscr{C}}(M,X)$ is defined
+by $g\mapsto g\circ f.$
+\end{list}
+\end{egs}
+\begin{Def}[Natural transformation or Functorial morphism]
+Let $\mathscr{C}$ and $\mathscr{D}$ be two categories, $F,G:
+\mathscr{C}\rightarrow \mathscr{D}$ be two functors. A natural
+transformation $\Phi:F\rightarrow G$ is by definition a function
+which assigns to each $M\in Obj\mathscr{C}$ a morphism $\Phi_M\in
+Hom_{\mathscr{D}}(F(M),G(M))$ such that $\forall f\in
+Hom_{\mathscr{C}}(M,N)$ holds
+\[ \xymatrix{
+   F(M) \ar[r]^-{\Phi_M} \ar[d]_{F(f)} & G(M) \ar[d]^-{G(f)} \\
+   F(N) \ar[r]^-{\Phi_N} & G(N) }  \]
+\end{Def}
+
+\newpage
+
+\section{Direct systems and inverse systems}
+
+Let $(I,\leqslant)$ be a directed set, $\mathscr{C}$ be a category.
+\begin{Def}
+A direct system $(A_i,\Phi_{ij})_{i,j\in I}$ in $\mathscr{C}$
+consists of a family of objects $A_i(i\in I)$ and $\Phi_{ij}\in
+Hom_{\mathscr{C}}(A_i,A_j)(i\leqslant j)$ such that:
+\enum
+\item[(1)]$\Phi_{ii}=id_{A_i}, \forall i\in I.$
+\item[(2)]$\Phi_{jk}\Phi_{ij}=\Phi_{ik},$ whenever $i\leqslant
+j\leqslant k.$
+\end{list}
+Consider the functor $F: CatI\rightarrow \mathscr{C}:$
+\[ \xymatrix@R=0em{
+   ObjCatI \ar[r] & Obj\mathscr{C}; \\
+   i \ar@{|->}[r] & A_i }  \]
+$\forall i\leqslant j,$
+\[ \xymatrix@R=0em{
+   Hom_{CatI}(i,j) \ar[r] & Hom_{\mathscr{C}}(A_i,A_j)    \\
+   (i\hookrightarrow j) \ar@{|->}[r] & \Phi_{ij} }  \]
+$\forall i\leqslant j\leqslant k,$ we have the composition
+\[ \xymatrix@R=0em{
+   Hom_{CatI}(i,j)\times Hom_{CatI}(j,k) \ar[r]^-{\mu} & Hom_{CatI}(i,k)\\
+   (i\hookrightarrow j, j\hookrightarrow k) \ar@{|->}[r] &
+   (i\hookrightarrow k) }  \]
+So we have
+$$F((j\hookrightarrow k)\circ(i\hookrightarrow j)) = F(j\hookrightarrow
+k)\circ F(i\hookrightarrow j) = f(i\hookrightarrow k),$$ i.e.
+$\Phi_{jk}\Phi_{ij}=\Phi_{ik}.$
+\end{Def}
+\begin{Def}
+An inverse system $(A_i, \Phi_{ji})_{j,i\in I}$ in $\mathscr{C}$
+consists of objects $A_i(i\in I)$ in $\mathscr{C}$ and $\Phi_{ji}\in
+Hom_{\mathscr{C}}(A_j,A_i)(i\leqslant j)$ such that: \enum
+\item[(1)]$\forall i\in I, \Phi_{ii}=id_{A_i},$
+\item[(2)]$\Phi_{ji}\Phi_{kj}=\Phi_{ki},$ whenever $i\leqslant
+j\leqslant k.$
+\end{list}
+As above, an inverse system is equivalent to a contravariant functor
+from $CatI$ to $\mathscr{C}.$
+\end{Def}
+\begin{Def}
+The direct limit of a direct system $(A_i,\Phi_{ij})_{i,j\in I}$ is
+an object $A\in Obj\mathscr{C}$ (noted $\varinjlim\limits_{i\in
+I}A_i$) together with $\Phi_i\in Hom_{\mathscr{C}}(A_i,A)$
+satisfying $\Phi_j\Phi_{ij}=\Phi_i$ whenever $i\leqslant j,$ and
+having the following universal property: $\forall C\in
+Obj\mathscr{C}$ and $\psi_i\in Hom(A_i,C)(i\in I)$ satisfying
+$\psi_j\Phi_{ij}=\psi_i(i\leqslant j),$ there exists a unique
+$\psi\in Hom(A,C)$ such that $\psi\Phi_i=\psi_i(\forall i\in I).$
+i.e. $\forall i\leqslant j,$
+\[ \xymatrix{
+   & C \\
+   & A \ar@{-->}[u]_(.2){\exists!\psi} \\
+   A_i \ar"1,2"^{\psi_i} \ar[ur]_{\Phi_i} \ar[rr]_{\Phi_{ij}} & &
+   A_j \ar"1,2"_{\psi_j} \ar[ul]^{\Phi_j} }  \]
+is commutative.
+
+For the inverse limit of an inverse system, we need only to reverse
+all the arrows in the above definition.
+\end{Def}
+\begin{egs}\
+\enum
+\item[(1)]$SET:$ Let $I$ be a nonempty set. $\forall i\in I,$ take
+$A_i$ a set. Define a partial order on $I:$ $\forall i,j\in I,$ we
+say $i\leqslant j$ if $i=j.$ $\forall i,j\in I, i\leqslant j,$ set
+$\Phi_{ij}: A_i\rightarrow A_j$ to be $id_{A_i}.$ Then
+$(A_i,\Phi_{ij})_{i,j\in I}$ is a direct system. Set
+$$A=\coprod\limits_{i\in I}A_i=\{(i,x_i)\mid i\in I,x_i\in A_i\},$$
+then $\varinjlim\limits_{i\in I}A_i=A.$
+
+Indeed, $\forall i\in I,$ put
+\[ \xymatrix@R=0em{
+   A_i \ar[r]^-{\Phi_i} & A \\
+   x_i \ar@{|->}[r] & (i,x_i) }  \]
+$\forall x\in A, \exists!i\in I,x_i\in A$ such that $x=(i,x_i),$
+define $\psi(x)=\psi_i(x_i),$ then we have
+\[ \xymatrix{
+   A_i \ar[rr]^-{\Phi_i}_-{x_i\mapsto(i,x_i)} \ar[dr]_{\psi_i} & &
+   {A=\coprod\limits_{i\in I}A_i} \ar@{-->}[dl]^{\exists!\psi}  \\
+   & C }  \]
+with $\psi((i,x_i))=\psi_i(x_i).$
+\item[(2)]Inverse limit:
+
+Let $(A_i,\Phi_{ji})_{i,j\in I}$ be an inverse system. Define
+$$A=\varprojlim\limits_{i\in I}A_i=\prod\limits_{i\in I}A_i =
+\{(x_i)_{i\in I}\mid \forall i\in I,x_i\in A_i\}.$$ $\forall i\in
+I,$ define
+\[ \xymatrix@R=0em{
+   A \ar[r]^-{\Phi_i} & A_i \\
+   x=(x_j)_{j\in I} \ar@{|->}[r] & x_i }  \]
+Let $C$ be a nonempty set,
+\item[(3)]Direct sum in a category $\mathscr{C}:$
+
+Let $I$ be a nonempty set. $\forall i\in I,$ let $A_i\in
+Obj\mathscr{C}.$ Its direct limit (called a direct sum) is an object
+$A$ in $\mathscr{C}$ with morphisms $k_i\in Hom(A_i,A)$ such that
+\[ \xymatrix{
+   A_i \ar[rr]^-{k_i} \ar[dr]_{\psi_i} & & A \ar@{-->}[dl]^{\exists!\psi}\\
+   & C }  \]
+commutes. $(A,k_i)_{i\in I}$ is the direct limit, and we denote $A$
+by $\bigoplus\limits_{i\in I}A_i.$
+\item[(4)]Direct product in a category $\mathscr{C}:$
+
+Let $(A_i,\Phi_{ji})_{i,j\in I}$ be an inverse system. Its inverse
+limit is by definition an object $A\in Obj\mathscr{C}$ (denoted by
+$\prod\limits_{i\in I}A_i$), together with $p_i\in Hom(A,A_i)$ with
+the following universal property:
+\[ \xymatrix{
+   A_i & & {A=\prod\limits_{i\in I}A_i} \ar[ll]_-{p_i}  \\
+   & C \ar[ul]^{\psi_i} \ar@{-->}[ur]_{\exists!\psi} }  \]
+\item[(5)]Let $(I, \leqslant)$ be a directed set and $(A_i,
+\Phi_{ij})_{i,j\in I}$ be a direct system. Define
+$A=\coprod\limits_{i\in I}A_i/\sim=\varinjlim\limits_{i\in I}A_i.$
+$\forall (j,x_j),(k,x_k)\in \coprod\limits_{i\in I}A_i,$ we say that
+$(j,x_j)\sim(k,x_k)$ if $\exists l\in I$ such that $j,k\leqslant l$
+and $\Phi_{jl}(x_j)=\Phi_{kl}(x_k).$ $\forall i\in I,x_i\in A_i,$
+define $\Phi_i(x_i)=\overline{(i,x_i)}$ the equivalence class
+containing $(i,x_i).$ Then $(A,\Phi_i)_{i\in I}$ gives the direct
+limit of $(A_i,\Phi_{ij})_{i,j\in I}.$
+\[ \xymatrix{
+   & C \\
+   & A \ar@{-->}[u]_(.2){\exists!\psi} \\
+   A_i \ar"1,2"^{\psi_i} \ar[ur]_{\Phi_i} \ar[rr]_{\Phi_{ij}} & &
+   A_j \ar"1,2"_{\psi_j} \ar[ul]^{\Phi_j} }  \]
+Define $\psi(x)=\psi_i(x_i).$ Indeed, $\forall x\in A, \exists
+i,j\in I,$ such that $x=\overline{(i,x_i)}=\overline{(j,x_j)}.$ By
+definition, $\exists k\geqslant i,j$ such that
+$\Phi_{ik}(x_i)=\Phi_{jk}(x_j).$ Then
+$\psi_k\Phi_{ik}(x_i)=\psi_k\Phi_{jk}(x_j),$ thus
+$\psi_i(x_i)=\psi_j(x_j).$ Hence
+$\psi(x)=\psi\circ\Phi_i(x_i)=\psi_i(x_i)=\psi_j(x_j).$ So $\psi$ is
+well-defined.
+
+In the category $SET,$ let $(A_i,\Phi_{ji})_{i,j\in I}$ be an
+inverse system. Set
+$$A=\{(x_i)_{i\in I}\mid \Phi_{ji}(x_j)=x_i,\forall i\leqslant j\}\subseteq \prod\limits_{i\in I}A_i.$$
+$\forall x\in A$ with $x=(x_i)_{i\in I},$ and $\forall j\in I,$
+define $\Phi_j(x)=x_j,$ similarly we can show that
+$A=\varprojlim\limits_{i\in I}A_i.$
+\[ \xymatrix{
+   & C \ar"3,1"_{\psi_i} \ar@{-->}[d]^(.8){\exists!\psi}
+   \ar"3,3"^{\psi_j}\\
+   & A \ar[dl]^{\Phi_i} \ar[dr]_{\Phi_j}  \\
+   A_i & & A_j \ar[ll]^{\Phi_{ji}} }  \]
+\item[(6)]Let $A$ be a ring, consider the category $Mod(A).$
+Let $(I, \leqslant)$ be a directed set and $(M_i, \Phi_{ij})_{i,j\in
+I}$ be a direct system in $Mod(A).$ Put
+$$C=\bigoplus\limits_{i\in I}M_i=\{(x_i)_{i\in I}\mid \forall i\in I, x_i\in M_i, x_i=0 \text{ for almost all }i\}.$$
+$\forall i\in I,$ consider
+\[ \xymatrix@R=0em{
+   M_i \ar[r]^-{\psi_i} & C  \\
+   x_i \ar@{|->}[r] & (x_i\delta_{ij})_{j\in I} }  \]
+In this way, we can identify $M_i$ with a submodule of $C.$
+
+Set $R$ be the submodule of $C$ generated by the elements
+$x_i-\Phi_{ij}(x_i)(i\leqslant j, x_i\in M_i).$ Put $M=C/R,\forall
+i\in I,x_i\in M_i,$ define $\Phi_i(x_i)=\bar{x}_i=x_i+R\in M,$ we
+can show that $M=\varinjlim\limits_{i\in I}M_i.$ $\forall x\in
+M=\bigoplus\limits_{i\in I}M_i/R,$
+$$x=\bar{x}_{i_1}+\cdots+\bar{x}_{i_k}=\Phi_{i_1}(x_{i_1})+\cdots+\Phi_{i_k}(x_{i_k}).$$
+$\exists l\geqslant i_1,\cdots,i_k,$ put
+$x_l=\Phi_{i_1l}(x_{i_1})+\cdots+\Phi_{i_kl}(x_{i_k})\in M_l.$ Then
+\begin{eqnarray*}
+\Phi_l(x_l) & = &
+\Phi_l\Phi_{i_1l}(x_{i_1})+\cdots+\Phi_l\Phi_{i_kl}(x_{i_k}) \\
+& = & \Phi_{i_1}(x_{i_1})+\cdots+\Phi_{i_k}(x_{i_k})         \\
+& = & x.
+\end{eqnarray*}
+i.e. we have proved that $\forall x\in M, \exists i\in I, x_i\in
+M_i,$ such that $x=\Phi_i(x_i)=\bar{x}_i.$
+
+Then we can define $\psi(x)=\psi(\Phi_i(x_i))=\psi_i(x_i).$ If
+$\exists j\in I, x_j\in M_j$ such that $x=\Phi_i(x_i)=\Phi_j(x_j),$
+since $I$ is directed, then $\exists k\geqslant i,j,$ such that
+$\Phi_k\Phi_{ik}(x_i)=\Phi_k\Phi_{jk}(x_j),$ i.e.
+$\Phi_k(\Phi_{ik}(x_i)-\Phi_{jk}(x_j))=0.$ We can prove $\exists
+h\geqslant k$ such that
+$\Phi_{kh}(\Phi_{ik}(x_i)-\Phi_{jk}(x_j))=0.$ Then
+$\psi_i(x_i)=\psi_j(x_j),$ thus $\psi$ is well-defined.
+
+Let $(M_i, \Phi_{ji})_{i,j\in I}$ be an inverse system, set
+$$M=\{(x_i)_{i\in I}\mid \Phi_{ji}(x_j)=x_i,\forall i\leqslant j\in I\}.$$
+$\forall i\in I,$ define
+\[ \xymatrix@R=0em{
+   M \ar[r]^-{\Phi_i} & M_i   \\
+   (x_j)_{j\in I} \ar@{|->}[r] & x_i }  \]
+Then $M=\varprojlim\limits_{i\in I}M_i.$
+\end{list}
+\end{egs}
+
+Let $\mathscr{C}$ be a category, let $(I, \leqslant)$ be a directed
+set, and $(M_i, \varphi_{ij})_{i,j\in I}$ be a direct system.
+Suppose $(M, \varphi_i)_{i\in I}$ is its direct limit, then
+$$\varprojlim\limits_{i\in I}Hom(M_i, N)\cong
+Hom(\varinjlim\limits_{i\in I}M, N).$$ Now let $(M_i,
+\varphi_{ji})_{i,j\in I}$ be an inverse system, we suppose that $(M,
+\varphi_i)_{i\in I}$ is its inverse limit, then
+$$\varprojlim\limits_{i\in I}Hom(N, M_i)\cong
+Hom(N, \varprojlim\limits_{i\in I}M).$$
+
+\newpage
+
+\section{Abelian category}
+
+\begin{Def}
+Let $\mathscr{C}$ be a category, we say that $\mathscr{C}$ is
+additive if the following conditions are satisfied:
+\enum
+\item[(1)]$\forall A,B\in Obj\mathscr{C},$ the direct product
+$A\times B$ exists in $\mathscr{C}.$
+\item[(2)]$\forall A,B\in Obj\mathscr{C},$ $Hom(A,B)$ is an Abelian
+group( noted additively ).
+\item[(3)]$\forall A,B\in Obj\mathscr{C},$
+\[ \xymatrix@R=0em{
+   Hom{A,B}\times Hom(B,C) \ar[r] & Hom(A,C)  \\
+   (f,g) \ar@{|->}[r] & g\circ f }  \]
+is a group homomorphism with respect to each variable: $\forall f\in
+Hom(A,B), g_1,g_2\in Hom(B,C), (g_1+g_2)\circ f=g_1\circ f+g_2\circ
+f; \forall g\in Hom(B,C), f_1,f_2\in Hom(A,B), g\circ(f_1+f_2)
+=g\circ f_1+g\circ f_2.$
+\end{list}
+\end{Def}
+\begin{remark}
+$\forall A,B\in Obj\mathscr{C},$ denote by $0_{AB}$ the zero element
+in $Hom(A,B).$ Then $\forall f\in Hom(B,C),$ we have $f\circ
+0_{AB}=0_{AC}.$ Likewise $\forall g\in Hom(C,A), 0_{AB}\circ
+g=0_{CB}.$
+\end{remark}
+\begin{egs}\
+\enum
+\item[(1)]$Ab,$ the category of Abelian groups, is additive.
+\item[(2)]Let $A$ be a ring, then $Mod(A)$ is an additive category.
+\end{list}
+\end{egs}
+\begin{prop}
+Let $\mathscr{C}$ be an additive category, and $A,B\in
+Obj\mathscr{C}.$
+\enum
+\item[(1)]Let $(A\times B,p_1,p_2)$ be the direct product of $A$ and
+$B,$ then $\exists ! k_1\in Hom(A,A\times B),\exists ! k_2\in
+Hom(B,A\times B),$ such that
+$p_1k_1=id_A,p_2k_2=id_B,p_1k_2=0,p_2k_1=0.$ Moreover,
+$k_1p_1+k_2p_2=id_{A\times B}.$
+\[ \xymatrix{
+   A & & B                                                 \\
+   & {A\times B} \ar"1,1"_-{p_1} \ar"1,3"^-{p_2}           \\
+   A \ar[uu]^{id_A} \ar@{-->}"2,2"_-{\exists ! k_1} & & B
+   \ar[uu]_{id_B} \ar@{-->}"2,2"^-{\exists ! k_2} }  \]
+\item[(2)]Suppose $\exists P\in Obj\mathscr{C},$ and $p_1\in
+Hom(P,A), p_2\in Hom(P,B), k_1\in Hom(A,P), k_2\in Hom(B,P),$ such
+that $$p_1k_1=id_A, p_2k_2=id_B, k_1p_1+k_2p_2=id_P,$$ then
+$(P,p_1,p_2)$ is the direct product of $A$ and $B;$ $(P,k_1,k_2)$ is
+the direct sum of $A$ and $B.$
+\end{list}
+\end{prop}
+\begin{proof}\
+\enum
+\item[(1)]
+\item[(2)]
+\end{list}
+\end{proof}
+\begin{Def}
+Let $\mathscr{C}$ be a category, $A,B\in Obj\mathscr{C},f\in
+Hom(A,B).$
+\enum
+\item[(1)]We call $f$ a monomorphism or injective if for any
+$\alpha,\beta\in Hom(C,A)$ satisfying
+$$f\alpha=f\beta\Longrightarrow \alpha=\beta.$$
+\item[(2)]We call $f$ an epimorphism or surjective if for any
+$\alpha,\beta\in Hom(C,A)$ satisfying
+$$\alpha f=\beta f\Longrightarrow \alpha=\beta.$$
+\item[(3)]We call $f$ a bijection or bijective if $f$ is injective
+and surjective.
+\end{list}
+\end{Def}
+\begin{remarks}\
+\enum
+\item[(1)]$f$ is injective in $\mathscr{C}$ iff $f$ is surjective in
+$\mathscr{C}^{op}.$
+\item[(2)]An isomorphism is a morphism with a two-sided inverse, so
+an isomorphism if bijective. But the converse is false in general.
+\end{list}
+\end{remarks}
+\begin{Def}
+Let $\mathscr{C}$ be an additive category, $A,B\in Obj\mathscr{C},$
+and $f\in Hom(A,B).$
+\enum
+\item[(1)]We call $i\in Hom(K,A)$ the kernel of $f$ if $f\circ i=0$
+and $\forall i^{\prime}\in Hom(K^{\prime},A)$ such that $f\circ
+i^{\prime}=0,$ then $\exists ! j\in Hom(K^{\prime},K)$ such that
+$i^{\prime}=i\circ j.$ We often denote $K$ by $kerf$ and call it the
+kernel of $f.$
+\[ \xymatrix{
+   K \ar[r]^i & A \ar[r]^f & B                                    \\
+   {K^{\prime}} \ar[ur]_{i^{\prime}} \ar@{-->}[u]^{\exists! j} }  \]
+\item[(2)]We call $p\in Hom(B,C)$ the cokernel of $f$ if $p\circ f=0$
+and $\forall p^{\prime}\in Hom(B,C^{\prime})$ such that
+$p^{\prime}\circ f=0,$ then $\exists ! j\in Hom(C,C^{\prime})$ such
+that $p^{\prime}=j\circ p.$ We often denote $C$ by $cokerf$ and call
+it the cokernel of $f.$
+\[ \xymatrix{
+   A \ar[r]^f & B \ar[r]^p \ar[d]_{p^{\prime}}& C \ar@{-->}[dl]^{\exists! j}\\
+   & {C^{\prime}} }  \]
+\item[(3)]We denote by $imf$ the kernel of the cokernel of $f.$
+\item[(4)]We denote by $coimf$ the cokernel of the kernel of $f.$
+\end{list}
+\end{Def}
+\begin{remarks}\
+\enum
+\item[(1)]$kerf$ is injective and unique up to isomorphism.
+\item[(2)]$cokerf$ is surjective and unique up to isomorphism.
+\item[(3)]There exists a canonical morphism
+$$\bar{f}:coimf\rightarrow imf$$
+which is induced by
+\[ \xymatrix{
+   K \ar[r]^i_{kerf} & A \ar[d]_{\bar{p}} \ar[r]^f & B
+   \ar[r]^p_{cokerf} & C                                        \\
+   & cokeri=coimf \ar@{-->}[r]_-{\exists ! \bar{f}}
+   \ar@{-->}[ur]^-{\exists !f_1} & imf=kerp \ar[u]_{\bar{i}} }  \]
+\end{list}
+\end{remarks}
+\begin{proof}\
+\enum
+\item[(1)]$\forall \alpha,\beta\in Hom(C,K),$ if
+$i\circ\alpha=i\circ\beta,$ put $\varphi=i\circ\alpha=i\circ\beta.$
+Then $f\circ\varphi=f\circ i\circ\alpha=0,$ thus $\exists!j\in
+Hom(C,K)$ such that $\varphi=i\circ j.$ But
+$\varphi=i\circ\alpha=i\circ\beta,$ so $\alpha=\beta=\varphi.$
+\item[(2)]$\forall \alpha,\beta\in Hom(C,D),$ if $\alpha\circ
+p=\beta\circ p,$ put $\varphi=\alpha\circ p=\beta\circ p.$ Then
+$\varphi\circ f=\alpha\circ p\circ f=0,$ thus $\exists!j\in
+Hom(C,C^{\prime}$ such that $\varphi=j\circ p.$ But
+$\varphi=\alpha\circ p=\beta\circ p,$ so $\alpha=\beta=j.$
+\item[(3)]$\mathit{1^{\circ}}$ We claim that we have the following commutative diagram
+\[ \xymatrix{
+   K \ar[r]^i & A \ar[r]^-{\bar{p}}_-{cokeri} \ar[d]_f & coimf
+   \ar[dl]^-{\exists ! f_1}                               \\
+   & B }  \]
+for $f\circ i=0,$ $\bar{p}$ is the cokernel of $i,$ then $\exists
+!f_1,$ such that $f=f_1\circ\bar{p}.$
+
+$\mathit{2^{\circ}}$ The following diagram
+\[ \xymatrix{
+   imf \ar[r]^-{\bar{i}}_-{kerp} & B \ar[r]^p & C        \\
+   coimf \ar@{-->}[u]^{\exists!\bar{f}} \ar[ur]_{f_1} }  \]
+commutes, because $0=p\circ f=p\circ f_1\circ \bar{p}.$ $\bar{p}$ is
+the cokernel of $i,$ thus is surjective. So $p\circ f_1=0.$ But
+$\bar{i}$ is the kernel of $p,$ therefore $\exists!\bar{f}\in
+Hom(coimf,imf)$ such that $f_1=\bar{i}\circ \bar{f}.$
+\end{list}
+\end{proof}
+\begin{eg}
+In the category of Abelian groups $Ab,$ take $f\in Hom(A,B),$ then
+\[ \xymatrix@R=0em{
+   kerf=\{a\in A\mid f(a)=0\}, & imf=\{f(a)\mid a\in A\}, \\
+   cokerf=B/imf, & coimf=A/kerf. }  \]
+and we have
+\[ \xymatrix{
+   kerf\ \ar@^{(->}[r]^i & A \ar[d] \ar[r]^f & B \ar[r]^-p & {B/imf=cokerf}\\
+   & {A/kerf=coimf} \ar@{-->}[r]^-{\exists ! \bar{f}}
+   & imf \ar[u] }  \]
+\end{eg}
+\begin{Def}
+Let $\mathscr{C}$ be an additive category. A zero object $0$ in
+$\mathscr{C}$ is by definition an object such that $Hom(0,0)=\{0\},$
+i.e. the identity element of the object $0$ is equal to the zero
+morphism.
+\end{Def}
+\begin{remarks}\
+\enum
+\item[(1)]$\forall X\in Obj\mathscr{C}, Hom(X,0)=\{0\},
+Hom(0,X)=\{0\}.$ Indeed, $\forall f\in Hom(X,0), f=id_0\circ f=0.$
+\item[(2)]Zero object in $\mathscr{C}$ are isomorphic: Let $0_1,
+0_2$ be two zero objects, $Hom(0_1,0_2)=\{o_{12}\},
+Hom(0_2,0_1)=\{0_{21}\}. 0_{21}\circ 0_{12}\in
+Hom(0_1,0_1)=\{id_{0_1}\}, 0_{12}\circ 0_{21}\in
+Hom(0_2,0_2)=\{id_{0_2}\}. 0_{21}\circ 0_{12}=id_{0_1}, 0_{12}\circ
+0_{21}=id_{0_2},$ so $0_1\cong 0_2.$
+\end{list}
+\end{remarks}
+\begin{Def}
+Let $\mathscr{C}$ be an additive category with zero object. We say
+that $\mathscr{C}$ is an Abelian category if $\forall A,B\in
+Obj\mathscr{C},$ and $\forall f\in Hom(A,B),$ $kerf$ and $cokerf$ do
+exist (and hence $imf$ and $coimf$ do exist), and the canonical
+morphism $\bar{f}:coimf\rightarrow imf$ is an isomorphism.
+\end{Def}
+\begin{Def}
+Let $\mathscr{C}$ be an Abelian category, $A,B\in Obj\mathscr{C},
+f\in Hom(A,B).$
+\enum
+\item[(1)]If $f$ is a monomorphism, then we say that $A$ is a
+sub-object of $B,$ noted $A\subseteq B.$
+\item[(2)]If $f$ is an epimorphism, and $p: \rightarrow C$ is the
+cokernel of $f,$ then we say that $C$ is the quotient of $B$ by $A,$
+noted $A/B.$
+\end{list}
+\end{Def}
+\begin{eg}
+$Ab, Mod(A)$ are Abelian categories, where $A$ is a ring.
+\end{eg}
+\begin{prop}
+Let $f: A\rightarrow B$ be a morphism in an Abelian category,
+\enum
+\item[(1)]$f$ injective iff $kerf=0.$ In this case, $imf=A.$
+\item[(2)]$f$ is surjective iff $cokerf=0,$ iff $imf=B.$
+\end{list}
+\end{prop}
+\begin{proof}
+$\mathit{1^{\circ}}$ $f$ is injective iff $kerf=0:$
+
+$\Longrightarrow:$ Suppose that $f$ is injective, $f\circ kerf=0,$
+then $kerf=0.$
+
+$\Longleftarrow:$
+\[ \xymatrix{
+   0 \ar[r]^-{kerf} & A \ar[r]^f & B             \\
+   C \ar@{-->}[u]^{\exists!\varphi} \ar[ur]_j }  \]
+Suppose that $kerf=0.$ If $f\circ j=0,$ then $\exists!\varphi: C
+\rightarrow 0,$ such that $j=kerf\circ\varphi=0\circ\varphi=0.$
+Therefore $f\circ j=0\Longrightarrow j=0,$ thus $f$ is injective.
+
+$\mathit{2^{\circ}}$ $imf=A:$
+
+\[ \xymatrix{
+   0 \ar[r]^-{kerf} & A \ar[r]^-{id_A} \ar[d]_j & A
+   \ar@{-->}[dl]^{\exists!\varphi=j}              \\
+   & C }  \]
+$id_A=coker(kerf)=coimf\cong imf,$ so $A=imf.$
+\end{proof}
+\begin{cor}
+In an Abelian category, a bijective morphism is an isomorphism.
+\end{cor}
+\begin{proof}
+Suppose $f: A\rightarrow B$ is bijective,
+\[ \xymatrix{
+   0 \ar[r]^i & A \ar[r]^f \ar[d]_{p_1} & B                \\
+   & {A=coimf} \ar[r]^-{\bar{f}} & {imf=B} \ar[u]_{p_2} }  \]
+$f=p_2\circ\bar{f}\circ p_1,$ $p_2,\bar{f},p_1$ are isomorphisms, so
+$f$ is an isomorphism.
+\end{proof}
+\begin{Def}
+Let $\mathscr{C}$ be an Abelian category,
+\enum
+\item[(1)]In $\mathscr{C},$ a sequence of morphisms
+$A\stackrel{u}{\rightarrow} B\stackrel{v}{\rightarrow} C$ is called
+exact if $v\circ u=0$ and the canonical morphism $coimu\rightarrow
+kerv$ is an isomorphism, equivalently, $imu=kerv.$
+\item[(2)]An exact sequence of the form $0\rightarrow A\rightarrow B\rightarrow C\rightarrow
+0$ is called a short exact sequence. It is called split if it is
+isomorphic to $0\rightarrow A\rightarrow A\oplus C\rightarrow
+C\rightarrow 0,$ where $A\rightarrow A\oplus C,$ and $A\oplus
+C=A\times C\rightarrow C$ are the canonical morphisms.
+\end{list}
+\end{Def}
+\begin{remarks}\
+\enum
+\item[(1)]
+\[ \xymatrix{
+   keru \ar[r]^i & A \ar[r]^u \ar[d]_{p_1} & B \ar[r]^v & C         \\
+   imu \ar[r]^-{\sim} & {coimu=cokeri} \ar@{-->}[r]_-{\exists!\varphi}
+   \ar@{-->}[ur]^-{\exists!j} & kerv \ar[u]_{i^{\prime}} }  \]
+$0=v\circ u=v\circ j\circ p_1,$ $p_1$ is surjective, so we have
+$v\circ j=0,$ then $\exists!\varphi:cokeri\rightarrow kerv$ such
+that $j=i^{\prime}\circ\varphi.$
+\item[(2)]$0\rightarrow A\stackrel{f}{\rightarrow}B$ is exact iff
+$f$ is injective.
+\item[(3)]$A\stackrel{f}{\rightarrow}B\rightarrow 0$ is exact iff
+$f$ is surjective.
+\item[(4)]$0\rightarrow A\stackrel{f}{\rightarrow}B\stackrel{g}{\rightarrow}C\rightarrow
+0$ is exact iff $f$ is injective, $imf=kerg,$ and $g$ is surjective.
+In this case, $f=kerg,g=cokerf.$
+\end{list}
+\end{remarks}
+\begin{prop}
+Let $0\rightarrow A_1\stackrel{k_1}{\rightarrow} A
+\stackrel{p_1}{\rightarrow}A_2\rightarrow 0$ be a short exact
+sequence in an Abelian category. Then the followings are equivalent.
+\enum
+\item[(1)]The sequence is split;
+\item[(2)]$\exists p_1\in Hom(A,A_1)$ such that $p_1k_1=id_{A_1};$
+\item[(3)]$\exists k_2\in Hom(A_2,A)$ such that $p_2k_2=id_{A_2}.$
+\end{list}
+\end{prop}
+\begin{proof}
+$(1)\Longrightarrow(2),(3):$ $A$ is isomorphic to $A_1\otimes
+A_2=A_1\times A_2,$ so the existence of $p_1$ and $k_2$ are obvious.
+
+$(2)\Longrightarrow(1):$
+\[ \xymatrix{
+   0 \ar[r] & A_1 \ar@<.6ex>[r]^{k_1} & A \ar@<.6ex>[l]^{p_1} \ar[r]^{p_2}
+   \ar[dr]_f & A_2 \ar[r] \ar@{-->}[d]^{\exists!k_2} & 0     \\
+   & & & A }  \]
+Put $f=id_A-k_1p_1\in Hom(A,A),$ then
+$$f\circ k_1=k_1-k_1p_1k_1=k_1-k_1\circ id_{A_1}=k_1-k_1=0.$$
+$p_2=cokerk_1,$ so $\exists! k_2:A_2\rightarrow A$ such that
+$f=k_2p_2.$ Hence we have $id_A=k_1p_1+k_2p_2,$ then $id_{A_2}\circ
+p_2=p_2=p_2\circ id_A=p_2k_2p_2.$ Since $p_2$ is surjective, then
+$id_{A_2}=p_2k_2.$ Therefore $(A,k_1,k_2)$ gives $A_1\oplus A_2,$
+$(A,p_1,p_2)$ gives $A_1\times A_2.$
+\end{proof}
+\begin{Def}
+Let $\mathscr{C}$ and $\mathscr{D}$ be two Abelian categories, $F:
+\mathscr{C}\rightarrow \mathscr{D}$ be a covariant functor.
+\enum
+\item[(1)]We say that $F$ is additive if $\forall A,B\in
+Obj\mathscr{C},$ the mapping
+\[ \xymatrix@R=0em{
+   Hom_{\mathscr{C}}(A,B) \ar[r]^-F & Hom_{\mathscr{D}}(F(A),F(B))\\
+   f \ar@{|->}[r] & F(f) }  \]
+is a group homomorphism.
+\item[(2)]We say that $F$ is exact if for any exact sequence
+$A\stackrel{f}{\rightarrow} B\stackrel{g}{\rightarrow} C$ in
+$\mathscr{C},$ the sequence $F(A)\stackrel{F(f)}{\rightarrow}
+F(B)\stackrel{F(g)}{\rightarrow} F(C)$ is exact in $\mathscr{D}.$
+\item[(3)]We say that $F$ is left exact if for any exact sequence
+$0\rightarrow A\stackrel{f}{\rightarrow} B\stackrel{g}{\rightarrow}
+C$ in $\mathscr{C},$ the sequence $0\rightarrow
+F(A)\stackrel{F(f)}{\rightarrow} F(B)\stackrel{F(g)}{\rightarrow}
+F(C)$ is exact in $\mathscr{D}.$
+\item[(4)]We say that $F$ is right exact if for any exact sequence
+$A\stackrel{f}{\rightarrow} B\stackrel{g}{\rightarrow} C\rightarrow
+0$ in $\mathscr{C},$ the sequence $F(A)\stackrel{F(f)}{\rightarrow}
+F(B)\stackrel{F(g)}{\rightarrow} F(C)\rightarrow 0$ is exact in
+$\mathscr{D}.$
+\end{list}
+\end{Def}
+\begin{prop}
+Let $\mathscr{C}$ and $\mathscr{D}$ be two Abelian categories, $F:
+\mathscr{C}\rightarrow \mathscr{D}$ be an additive covariant
+functor.
+\enum
+\item[(1)]$\forall A,B\in Obj\mathscr{C}, F(A\otimes B)\cong
+F(A)\otimes F(B).$
+\item[(2)]If $0\rightarrow A\stackrel{f}{\rightarrow} B\stackrel{g}{\rightarrow} C\rightarrow
+0$ is split in $\mathscr{C},$ so is $0\rightarrow
+F(A)\stackrel{F(f)}{\rightarrow} F(B)\stackrel{F(g)}{\rightarrow}
+F(C)\rightarrow 0$ in $\mathscr{D}.$
+\end{list}
+\end{prop}
+\begin{proof}\
+\enum
+\item[(1)]
+\[ \xymatrix{
+   & {A\otimes B} \ar@<.6ex>[dl]^{p_1} \ar@<-.6ex>[dr]_{p_2}  \\
+   A \ar@<.6ex>[ur]^{k_1} & & B \ar@<-.6ex>[ul]_{k_2} }  \]
+$p_1k_1=id_A,p_2k_2=id_B,k_1p_1+k_2p_2=id_{A\otimes B}.$ Then we
+have $$F(p_1)F(k_1)=F(p_1k_1)=F(id_A)=id_{F(A)},$$
+$$F(p_2)F(k_2)=F(id_B)=id_{F(B)},$$
+$$F(k_1)F(p_1)+F(k_2)F(p_2)=id_{F(A\otimes B)}.$$
+
+Therefore $(F(A\otimes B),F(k_1),F(k_2))$ gives $F(A)\otimes F(B),$
+so $F(A\otimes B)\cong F(A)\otimes F(B).$
+\item[(2)]It's direct by $(1).$
+\end{list}
+\end{proof}
+\begin{prop}
+Let $\mathscr{C}$ be an additive category, $A,B\in Obj\mathscr{C},
+f,g\in Hom(A,B).$
+\enum
+\item[(1)]If $\forall i\in Hom(C,A),$ we have $f\circ i=0$ iff
+$g\circ i=0,$ then $kerf=kerg.$
+\item[(2)]If $\forall p\in Hom(C,A),$ we have $p\circ f=0$ iff
+$p\circ g=0,$ then $cokerf=cokerg.$
+\end{list}
+\end{prop}
+\begin{proof}
+\[ \xymatrix{
+   kerf \ar[r]^-{i_f} & A \ar[r]^-f & B          \\
+   kerg \ar[ur]_{i_g} \ar@{-->}[u]^{\exists!\psi} }
+   \xymatrix{
+   kerg \ar[r]^-{i_g} & A \ar[r]^-f & B             \\
+   kerf \ar[ur]_{i_f} \ar@{-->}[u]^{\exists!\varphi} }
+\]
+$i_g=i_f\circ\psi, i_f=i_g\circ\varphi,$ then
+$i_f\circ\psi\circ\varphi=i_g\circ\varphi=i_f=i_f\circ id_{kerf}.$
+$i_f$ is injective, thus $\psi\circ\varphi=id_{kerf}.$
+$i_g\circ\varphi\circ\psi=i_f\circ\psi=i_g=i_g\circ id_{kerg},$
+$i_g$ is injective, so $\varphi\circ\psi=id_{kerg}.$ Therefore we
+obtain that $kerf\cong kerg.$
+\end{proof}
+\begin{prop}
+Let $\mathscr{C}$ and $\mathscr{D}$ be two Abelian categories,
+$F:\mathscr{C}\rightarrow \mathscr{D}$ an additive covariant
+functor. Then $F$ is exact iff $F$ sends every short exact sequence
+in $\mathscr{C}$ to a short exact sequence in $\mathscr{D}.$
+\end{prop}
+\begin{proof}
+$\Longrightarrow:$ is direct.
+
+$\Longleftarrow:$ Suppose that $A\stackrel{f}{\rightarrow}
+B\stackrel{g}{\rightarrow} C$ is exact in $\mathscr{C},$ then the
+diagram
+\[ \xymatrix{
+   & & & coimg \ar[r]^-{\bar{g}} & img \ar@<.6ex>[r] \ar[d]^j & 0
+   \ar@<.6ex>[l]                                               \\
+   0 \ar[r] & kerf\ar[r]^-t & A \ar[r]^-f \ar[d] \ar[dr]^-p & B
+   \ar[u] \ar[r]^-g \ar[ur]^-q & C \ar[r]^-s & cokerg \ar[r] &0 \\
+   & & coimf\ar[r]_-{\bar{f}} & imf \ar[u]_i \ar@<.6ex>[r] & 0
+   \ar@<.6ex>[l] }  \]
+is commutative. Then we obtain the following three short exact
+sequences:
+$$0\rightarrow kerf\stackrel{t}{\rightarrow} A\stackrel{p}{\rightarrow} imf\rightarrow 0,$$
+$$0\rightarrow kerg(=imf)\stackrel{i}{\rightarrow} B\stackrel{q}{\rightarrow} img\rightarrow 0,$$
+$$0\rightarrow img\stackrel{j}{\rightarrow} C\stackrel{s}{\rightarrow} cokerg\rightarrow 0.$$
+By hypothesis, $F$ sends the three short exact sequences in
+$\mathscr{C}$ to an exact sequence in $\mathscr{D}:$
+$$F(A)\rightarrow F(B)\rightarrow F(C).$$
+\end{proof}
+\begin{prop}
+Let $\mathscr{C}$ be an Abelian category and $(E):0\rightarrow
+A\stackrel{f}{\rightarrow} B \stackrel{g}{\rightarrow} C$ be a
+sequence of morphisms in $\mathscr{C}.$ Then the followings are
+equivalent:
+\enum
+\item[(1)]The sequence is exact.
+\item[(2)]$\forall x\in Obj\mathscr{C},$ the sequence
+$Hom_{\mathscr{C}}(X,E)$ is exact in $Ab:$
+\[ \xymatrix@C=4em{
+   0 \ar[r] & Hom_{\mathscr{C}}(X,A) \ar[r]^{Hom_{\mathscr{C}}(X,f)} &
+   Hom_{\mathscr{C}}(X,B) \ar[r]^{Hom_{\mathscr{C}}(X,g)} &
+   Hom_{\mathscr{C}}(X,C) }  \]
+\end{list}
+\end{prop}
+\begin{proof}
+$(1)\Longrightarrow(2):$
+
+$\mathit{1^{\circ}}$ $Hom_{\mathscr{C}}(X,f)$ is surjective:
+
+$\forall u\in Hom_{\mathscr{C}}(X,A),$ if
+$Hom_{\mathscr{C}}(X,f)(u)=0,$ i.e. $f\circ u=0,$ since $f$ is
+injective, so $u=0.$ Hence $Hom_{\mathscr{C}}(X,f)$ is injective.
+
+$\mathit{2^{\circ}}$
+$im(Hom_{\mathscr{C}}(X,f))=ker(Hom_{\mathscr{C}}(X,g)):$
+
+$\forall v\in ker(Hom_{\mathscr{C}}(X,g)),$ we have
+$0=Hom_{\mathscr{C}}(X,g)(v)=g\circ v.$ But $kerg=imf=f,$ then
+$\exists u\in Hom_{\mathscr{C}}(X,A)$ such that $v=f\circ
+u=Hom_{\mathscr{C}}(X,f)(u).$ Hence
+$ker(Hom_{\mathscr{C}}(X,g))\subseteq im(Hom_{\mathscr{C}}(X,f)).$
+
+Conversely, $Hom_{\mathscr{C}}(X,g)\circ Hom_{\mathscr{C}}(X,f) =
+Hom_{\mathscr{C}}(X,g\circ f) = Hom_{\mathscr{C}}(X,0)=0,$ so we
+obtain that $im(Hom_{\mathscr{C}}(X,f))\subseteq
+ker(Hom_{\mathscr{C}}(X,g)).$
+
+$(2)\Longrightarrow(1):$
+
+$\mathit{1^{\circ}}$ $f$ is injective:
+
+Take $X=kerf, X=kerf\stackrel{i}{\rightarrow}
+A\stackrel{f}{\rightarrow} B\stackrel{g}{\rightarrow} C.$ Then
+$0=f\circ i=Hom_{\mathscr{C}}(X,f)(i),$ since
+$Hom_{\mathscr{C}}(X,f)$ is injective, so $i=o,$ therefore $f$ is
+injective.
+
+$\mathit{2^{\circ}}$ $f=kerg:$
+
+To show that $f=kerg,$ we should show that $\forall u\in
+Hom_{\mathscr{C}}(X,B)$ such that $g\circ u=0,$ then $\exists v\in
+Hom_{\mathscr{C}}(X,A)$ such that $u=f\circ v.$ Indeed, $0=g\circ
+u=Hom_{\mathscr{C}}(X,g)(u),$ so $u\in
+ker(Hom_{\mathscr{C}}(X,g))=im(Hom_{\mathscr{C}}(X,f)).$ Then
+$\exists v\in Hom_{\mathscr{C}}(X,A)$ such that
+$u=Hom_{\mathscr{C}}(X,f)(v)=f\circ v.$
+\end{proof}
+\begin{remark}
+$\forall X\in Obj\mathscr{C},$ the covariant functor
+$Hom_{\mathscr{C}}(X,-)$ is left exact. In general, it is not exact.
+Take, for example, $\mathscr{C}=Mod(A),$ with $A=\mathbb{Z},
+B=\mathbb{Z}, C=\mathbb{Z}/2\mathbb{Z}, X=\mathbb{Z}/2\mathbb{Z},$
+the canonical ring homomorphisms $0 \rightarrow A\rightarrow
+B\rightarrow C\rightarrow 0$ is exact, but $0 \rightarrow
+Hom_{\mathscr{C}}(X,A)\rightarrow Hom_{\mathscr{C}}(X,B)\rightarrow
+Hom_{\mathscr{C}}(X,C)\rightarrow 0$ can't be exact, because
+$Hom_{\mathscr{C}}(X,B)=0,$ while $Hom_{\mathscr{C}}(X,C)$ includes
+at least $id_{\mathbb{Z}/2\mathbb{Z}}.$
+\end{remark}
+\begin{prop}
+Let $\mathscr{C}$ be an Abelian category and $(E):0\rightarrow
+A\stackrel{f}{\rightarrow} B \stackrel{g}{\rightarrow} C\rightarrow
+0$ be a sequence of morphisms in $\mathscr{C}.$ Then the followings
+are equivalent:
+\enum
+\item[(1)]The sequence $(E)$ is split.
+\item[(2)]$\forall X\in Obj\mathscr{C},$ the sequence
+$Hom_{\mathscr{C}}(X,E)$ is exact:
+\[ \xymatrix@C=3em{
+   0 \ar[r] & Hom_{\mathscr{C}}(X,A) \ar[r]^{Hom_{\mathscr{C}}(X,f)} &
+   Hom_{\mathscr{C}}(X,B) \ar[r]^{Hom_{\mathscr{C}}(X,g)} &
+   Hom_{\mathscr{C}}(X,C) \ar[r] & 0 }  \]
+\end{list}
+\end{prop}
+\begin{proof}
+$(1)\Longrightarrow(2):$ comes from the fact that
+$Hom_{\mathscr{C}}(X,-)$ is covariant and additive.
+
+$(2)\Longrightarrow(1):$ Put $X=C,$ since $Hom_{\mathscr{C}}(C,g)$
+is surjective, then for $id_C\in Hom_{\mathscr{C}}(C,C), \exists
+v\in Hom_{\mathscr{C}}(C,B)$ such that
+$id_C=Hom_{\mathscr{C}}(C,g)(v)=g\circ v.$ Then $(B,f,v)$ gives
+$A\otimes C,$ so $(E)$ is split.
+\end{proof}
+\begin{prop}
+Let $\mathscr{C}$ be an Abelian category and $(E):
+A\stackrel{f}{\rightarrow} B \stackrel{g}{\rightarrow} C\rightarrow
+0$ be a sequence of morphisms in $\mathscr{C}.$ Then the followings
+are equivalent:
+\enum
+\item[(1)]The sequence $(E)$ is exact.
+\item[(2)]$\forall X\in Obj\mathscr{C},$ the sequence
+$Hom_{\mathscr{C}}(E,X)$ is exact:
+\[ \xymatrix@C=4em{
+   0 \ar[r] & Hom_{\mathscr{C}}(C,X) \ar[r]^{Hom_{\mathscr{C}}(g,X)} &
+   Hom_{\mathscr{C}}(B,X) \ar[r]^{Hom_{\mathscr{C}}(f,X)} &
+   Hom_{\mathscr{C}}(A,X) }  \]
+\end{list}
+\end{prop}
+\begin{remark}
+$\forall X\in Obj\mathscr{C},$ the additive contravariant functor
+$Hom_{\mathscr{C}}(-,X)$ is left exact.
+\end{remark}
+\begin{prop}
+Let $\mathscr{C}$ be an Abelian category and $(E):0\rightarrow
+A\stackrel{f}{\rightarrow} B \stackrel{g}{\rightarrow} C\rightarrow
+0$ be a sequence of morphisms in $\mathscr{C}.$ Then the followings
+are equivalent:
+\enum
+\item[(1)]The sequence $(E)$ is split.
+\item[(2)]$\forall X\in Obj\mathscr{C},$ the sequence
+$Hom_{\mathscr{C}}(E,X)$ is exact:
+\[ \xymatrix@C=3em{
+   0 \ar[r] & Hom_{\mathscr{C}}(C,X) \ar[r]^{Hom_{\mathscr{C}}(g,X)} &
+   Hom_{\mathscr{C}}(B,X) \ar[r]^{Hom_{\mathscr{C}}(f,X)} &
+   Hom_{\mathscr{C}}(A,X) \ar[r] & 0 }  \]
+\end{list}
+\end{prop}
+\begin{Def}
+Let $\mathscr{C}$ and $\mathscr{D}$ be two categories,
+$F:\mathscr{C}\rightarrow \mathscr{D}, G:\mathscr{D}\rightarrow
+\mathscr{C}$ be two covariant functors. We say that $F$ is a left
+adjoint of $G$ ($G$ is a right adjoint of $F$), if $\forall C\in
+Obj\mathscr{C}, Y\in Obj\mathscr{D},$ there exists a bijection
+$\Phi_{XY}: Hom_{\mathscr{D}}(F(X),Y)\rightarrow
+Hom_{\mathscr{C}}(X,G(Y)),$ which is functorial in both $X$ and $Y.$
+i.e. $\forall f\in Hom_{\mathscr{C}}(X,X^{\prime}), \forall g\in
+Hom_{\mathscr{D}}(Y,Y^{\prime}),$ we have the following commutative
+diagram
+\[ \xymatrix{
+   Hom_{\mathscr{D}}(F(X^{\prime}),Y) \ar[r]^-{\Phi_{X^{\prime}Y}}
+   \ar[d]_{Hom_{\mathscr{D}}(F(f),Y)} &
+   Hom_{\mathscr{C}}(X^{\prime},G(Y)) \ar[d]^{Hom_{\mathscr{C}}(f,G(Y))}\\
+   Hom_{\mathscr{D}}(F(X),Y) \ar[r]^-{\Phi_{XY}}
+   \ar[d]_{Hom_{\mathscr{D}}(F(X),g)} & Hom_{\mathscr{C}}(X,G(Y))
+   \ar[d]^{Hom_{\mathscr{C}}(X,G(g))}                           \\
+   Hom_{\mathscr{D}}(F(X),Y^{\prime}) \ar[r]^-{\Phi_{XY^{\prime}}} &
+   Hom_{\mathscr{C}}(X,G(Y^{\prime})) }  \]
+\end{Def}
+\begin{remark}
+Often, we say that $F$ is a left adjoint functor, and $G$ is a right
+adjoint functor.
+\end{remark}
+\begin{prop}
+Let $\mathscr{C}$ and $\mathscr{D}$ be two categories,
+$F:\mathscr{C}\rightarrow \mathscr{D}, G:\mathscr{D}\rightarrow
+\mathscr{C}$ be two covariant functors such that $F$ is a left
+adjoint of $G.$ Then $F$ is right exact and $G$ is left exact.
+\end{prop}
+\begin{proof}
+Let $(E): A\stackrel{f}{\rightarrow} B \stackrel{g}{\rightarrow}
+C\rightarrow 0$ be an exact sequence in $\mathscr{C},$ then $\forall
+Y\in \mathscr{D},$ the sequence $Hom_{\mathscr{C}}(E,G(Y))$ is
+exact, and therefore $Hom_{\mathscr{D}}(F(E),Y)$ is exact, so $F(E)$
+is exact. Hence $F$ is right exact.
+\end{proof}
+\begin{remark}
+In Abelian categories, a left adjoint functor is right exact, a
+right adjoint functor is left exact.
+\end{remark}
+\begin{prop}
+Let $A$ be a ring, and $M\in ObjMod(A).$ Define
+$$T_M(N)=M\otimes_A N, \forall N\in ObjMod(A);$$
+$$T_M(f)=id_M\otimes_A f, \forall f\in Hom_A(N,P).$$
+Then $T_M$ is covariant and is the left adjoint of $Hom_A(M,-),$
+thus $T_M$ is right exact: $N_1\rightarrow N_2\rightarrow
+N_3\rightarrow 0$ is exact $\Longrightarrow$ $M\otimes_A
+N_1\rightarrow M\otimes_A N_2\rightarrow M\otimes_A N_3\rightarrow
+0$ is exact.
+\end{prop}
+\begin{proof}
+We have the canonical isomorphisms:
+$$Hom(M\otimes N,P)\cong Hom(m,n;p)\cong Hom(N,Hom(M,P)),$$
+defined by
+\[ \xymatrix{
+   M\times N \ar[d]_{j_{M,N}} \ar[r]^-f & P \\
+   M\otimes N \ar@{-->}[ur]_-{\exists!\bar{f}} }  \]
+where $f$ is any bilinear homomorphism. Define $f_N: N\rightarrow
+Hom(M,P)$ by putting $f_N(n)=f(-,m), \forall n\in N.$ Then
+\[ \xymatrix@R=0em{
+   {\Phi_{NP}: Hom(T_M(N),P)} \ar[r] & {Hom(N,Hom(M,P))} \\
+   \bar{f} \ar@{|->}[r] & f_N }  \]
+is an isomorphism and functorial in $N$ and $P.$
+\end{proof}
+\begin{Def}
+Let $A$ be a ring and $M\in ObjMod(A).$ \enum
+\item[(1)]We say that $M$ is flat if $T_M$ is exact.
+\item[(2)]We say that $M$ is faithful flat, if the exactness of
+$(E): N_1\rightarrow N_2\rightarrow N_3$ is equivalent to the
+exactness of $(T_M(E)).$
+\item[(3)]We say that $M$ is projective if $Hom_A(M,-)$ is exact.
+\item[(4)]We say that $M$ is injective if $Hom_A(-,M)$ is exact.
+\end{list}
+\end{Def}
+\begin{remark}
+$A$ is a faithful flat $A$-module.
+\end{remark}
+\begin{prop}
+Let $A$ be a ring and $S\subseteq A$ be a multiplicatively closed
+subset of $A.$ Define $I_S=T_{S^{-1}A},$ then $I_S$ is exact.
+\end{prop}
+\begin{proof}
+$$\forall M\in ObjMod(A), I_S(M)=S^{-1}A\otimes_A M=S^{-1}M;$$
+$$\forall f\in Hom_A(N,P), I_S(f)=id_{S^{-1}A}\otimes_A f=S^{-1}f.$$
+Let $N_1\stackrel{f}{\rightarrow}N_2\stackrel{g}{\rightarrow}N_3$ be
+exact, $g\circ f=0, imf=kerg.$ Then $S^{-1}g\circ
+S^{-1}f=S^{-1}g\circ f=0,$ thus $im(S^{-1}f)\subseteq ker(S^{-1}g).$
+$forall y\in ker(S^{-1}g),$ write $y=\frac{a}{s}$ with $a\in N_2,
+s\in S.$ Since $0=S^{-1}g(y)=S^{-1}g(\frac{a}{s})=\frac{g(a)}{s},$
+so $\exists t\in S$ such that $g(a)t=0,$ i.e. $g(at)=0.$ Hence
+$at\in kerg=imf,$ then $\exists b\in N_1$ such that $at=f(b),$ then
+$y=\frac{a}{s}=\frac{at}{st}=\frac{f(b)}{st}=S^{-1}f(\frac{b}{st}).$
+Set $x=\frac{b}{st},$ then $x\in S^{-1}N_1, y=S^{-1}f(x),$ thus
+$im(S^{-1}f)\supseteq ker(S^{-1}g).$ Hence
+$im(S^{-1}f)=ker(S^{-1}g).$ Then $S^{-1}N_1
+\stackrel{S^{-1}f}{\rightarrow}S^{-1}
+N_2\stackrel{S^{-1}g}{\rightarrow}S^{-1} N_3$ is exact.
+\end{proof}
+\begin{lemma}[Snake lemma]
+Let
+\[ \xymatrix{
+   & A \ar[d]_u \ar[r]^f & B \ar[d]_v \ar[r]^g & C \ar[d]_w \ar[r]&
+   0\\
+   0 \ar[r] & A^{\prime} \ar[r]^{f^{\prime}} & B^{\prime}
+   \ar[r]^{g^{\prime}} & C^{\prime} }  \]
+be a commutative diagram in an Abelian category $\mathscr{C}$ such
+that the two rows are exact. Then $\exists \delta\in
+Hom_{\mathscr{C}}(kerw,cokeru)$ such that
+$$keru\rightarrow kerv\rightarrow kerw\rightarrow cokeru\rightarrow cokerv\rightarrow cokerw$$
+is exact.
+\end{lemma}
+\begin{lemma}[Five lemma]
+Let
+\[ \xymatrix{
+   A_1 \ar[d]_{f_1} \ar[r] & A_2 \ar[d]_{f_2} \ar[r] & A_3 \ar[d]_{f_3}
+   \ar[r] & A_4 \ar[d]_{f_4} \ar[r] & A_5 \ar[d]_{f_5}         \\
+   B_1 \ar[r] & B_2 \ar[r] & B_3 \ar[r] & B_4 \ar[r] & B_5 }  \]
+be a commutative diagram in an Abelian category $\mathscr{C}$ such
+that the two rows are exact. If $f_1,f_2,f_4,f_5$ are isomorphisms,
+so is $f_3.$
+\end{lemma}
